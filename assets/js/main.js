@@ -4,7 +4,7 @@ const navMenu = document.getElementById('nav-menu'),
       navClose = document.getElementById('nav-close')
 
 /*===== MENU SHOW =====*/
-/* Validate if constant exists */
+// Nếu click vào id = navToggle sẽ thêm class show-menu vào id = navMenu
 if(navToggle){
     navToggle.addEventListener('click', () =>{
         navMenu.classList.add('show-menu')
@@ -12,7 +12,7 @@ if(navToggle){
 }
 
 /*===== MENU HIDDEN =====*/
-/* Validate if constant exists */
+// Nếu click vào id = navClose sẽ xóa class show-menu ở id = navMenu
 if(navClose){
     navClose.addEventListener('click', () =>{
         navMenu.classList.remove('show-menu')
@@ -24,34 +24,46 @@ const navLink = document.querySelectorAll('.nav__link')
 
 const linkAction = () =>{
     const navMenu = document.getElementById('nav-menu')
-    // When we click on each nav__link, we remove the show-menu class
     navMenu.classList.remove('show-menu')
 }
-navLink.forEach(n => n.addEventListener('click', linkAction))
+// hàm này xóa class show-menu ở nav-menu
+
+navLink.forEach(e => e.addEventListener('click', linkAction))
+// người dùng click vào navLink sẽ thực hiện hàm linkAction
+
+
 
 /*=============== CHANGE BACKGROUND HEADER ===============*/
 const scrollHeader = () =>{
     const header = document.getElementById('header')
-    // When the scroll is greater than 50 viewport height, add the scroll-header class to the header tag
     this.scrollY >= 50 ? header.classList.add('scroll-header') 
                        : header.classList.remove('scroll-header')
 }
+// Hàm này có nghĩa là khi scrollY trên hoặc bằng 50 thì sẽ thêm class scroll-header và ngược lại
 window.addEventListener('scroll', scrollHeader)
+// thực thi hàm scrollHeader khi có sự kiện scroll trên window
+
+
 
 /*=============== SHOW SCROLL UP ===============*/ 
 const scrollUp = () =>{
 	const scrollUp = document.getElementById('scroll-up')
-    // When the scroll is higher than 350 viewport height, add the show-scroll class to the a tag with the scrollup class
 	this.scrollY >= 350 ? scrollUp.classList.add('show-scroll')
 						: scrollUp.classList.remove('show-scroll')
 }
+// hàm scroll có biến scrollUp chọc tới id scroll-up.khi scrollY >= 350 thêm class show-scroll và ngược lại
 window.addEventListener('scroll', scrollUp)
+// Thực thi hàm scrollUp khi có sự kiên scroll
+
+
 
 /*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
 const sections = document.querySelectorAll('section[id]')
-    
+console.log(sections)
+// tạo biến sections lấy thẻ có class section và có thuộc tính là id
 const scrollActive = () =>{
-  	const scrollY = window.pageYOffset
+  	const scrollY = window.pageYOffset 
+    // Biến scrollY lấy giá trị px chiều dọc của page
 
 	sections.forEach(current =>{
 		const sectionHeight = current.offsetHeight,
@@ -69,6 +81,8 @@ const scrollActive = () =>{
 }
 window.addEventListener('scroll', scrollActive)
 
+
+
 /*=============== DARK LIGHT THEME ===============*/ 
 const themeButton = document.getElementById('theme-btn')
 const darkTheme = 'dark-theme'
@@ -80,7 +94,7 @@ const selectedIcon = localStorage.getItem('selected-icon')
 
 // We obtain the current theme that the interface has by validating the dark-theme class
 const getCurrentTheme = () => document.body.classList.contains(darkTheme) ? 'dark' : 'light'
-const getCurrentIcon = () => themeButton.classList.contains(iconTheme) ? 'ri-moon-line' : 'ri-sun-line'
+const getCurrentIcon = () => themeButton.classList.contains(iconTheme) ? 'ri-moon-line' : iconTheme
 
 // We validate if the user previously chose a topic
 if (selectedTheme) {
